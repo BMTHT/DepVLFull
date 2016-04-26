@@ -13,14 +13,11 @@ function comment(image, name, src_info,messege){
 
 
 function showComment(id) {
-    var style_cm = document.getElementById("list_comment");
-    if(style_cm.style.visibility === "hidden"){
-        style_cm.style.visibility = "visible";
+    var visible = $("#list_comment").css("visibility");
+    if(visible == "hidden"){
+        $("#list_comment").css("visibility","visible");
     }
-    else {
-        style_cm.style.visibility = "hidden";
-    }
-//    $(id).webuiPopover({type:'iframe',url:'image.html', width:'500',height: '200px',placement: 'top-left'});
+    else $("#list_comment").css("visibility","hidden");
 }
 
 function createComment (comment, id){

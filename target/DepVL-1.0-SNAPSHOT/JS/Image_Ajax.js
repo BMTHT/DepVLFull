@@ -10,6 +10,7 @@ function loadImage(page, theme) {
     if(data == null) return false;
     $.each(data, function (key, value) {
         var img = addImage(key + (page - 1) * 5 + 1);
+        console.log(img.parent());
         var user = getUser(value.userId);
         $(img[0]).append(value.imgDescribe);
         img[1].src = value.imgUrl;
@@ -22,7 +23,7 @@ function loadImage(page, theme) {
         $(id).append(user.nickName);
         id = $(img[3]).children()[1];
         $(id).append(value.imgDate);
-        popup(img[4]);
+        
 
 
 
