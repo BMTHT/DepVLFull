@@ -5,9 +5,12 @@ package com.bmth.MyServlet;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+import com.bmth.DAO.Register;
+import com.bmth.bean.Account;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
+import java.util.Calendar;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -36,7 +39,7 @@ public class RegisterServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet RegisterServlet</title>");            
+            out.println("<title>Servlet RegisterServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet RegisterServlet at " + request.getContextPath() + "</h1>");
@@ -57,7 +60,7 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
+
     }
 
     /**
@@ -80,7 +83,28 @@ public class RegisterServlet extends HttpServlet {
         String sex = request.getParameter("sex");
         String date = request.getParameter("date");
         String address = request.getParameter("address");
-        String json = "{\"userId\" : 0}";
+        String phoneNumber = request.getParameter("ddd");
+
+        String[] dates = date.split("-");
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.YEAR, Integer.parseInt(dates[0]));
+        cal.set(Calendar.MONTH, Integer.parseInt(dates[1]));
+        cal.set(Calendar.DAY_OF_MONTH, Integer.parseInt(dates[2]));
+        Date birtday = new Date(cal.getTimeInMillis());
+
+        int gender = sex.equals("male") ? 1 : 0;
+        Account account = new Account(name, username, birtday, gender, email, address, "01698662215", username, password);
+        account.setAvatarUrl("Image/avatar/default.png");
+        Register register = new Register();
+        boolean check = register.AddUser(account);
+        String json;
+        if (check) {
+            account = register.getAccountbyUsername(username);
+            json = "{\"userId\":" + account.getUserId() + "}";
+        } else {
+            json = "{\"userId\": 0}";
+        }
+
         response.getWriter().write(json);
     }
 

@@ -137,7 +137,7 @@ public class Register {
                 account.setUsername(rs.getString(3));
                 account.setPassword(rs.getString(4));
             }
-           
+
         } catch (SQLException ex) {
             System.out.println("select data fail " + ex.toString());
         }
@@ -157,15 +157,9 @@ public class Register {
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.execute();
-
-            PreparedStatement cs = conn.prepareStatement(command);
-            cs.setInt(1, getNumberRowTable("account") + 1);
-            cs.setInt(2, getNumberRowTable("account") + 1);
-            cs.setString(3, account.getUsername());
-            cs.setString(4, account.getPassword());
-
+            int userId = getNumberRowTable("user") + 1;
             PreparedStatement cs2 = conn.prepareStatement(command2);
-            cs2.setInt(1, getNumberRowTable("user") + 1);
+            cs2.setInt(1,userId );
             cs2.setString(2, account.getFullName());
             cs2.setString(3, account.getNickName());
             cs2.setString(4, account.getBirthdayToString());
@@ -173,9 +167,15 @@ public class Register {
             cs2.setString(6, account.getEmail());
             cs2.setString(7, account.getAddress());
             cs2.setString(8, account.getPhoneNumber());
-            cs2.setString(9, account.getAvatarUrl());
+            cs2.setString(9, "Image/avatar/default.png");
 
-            if (cs.executeUpdate() > 0 && cs2.executeUpdate() > 0) {
+            PreparedStatement cs = conn.prepareStatement(command);
+            cs.setInt(1, getNumberRowTable("account") + 1);
+            cs.setInt(2, userId);
+            cs.setString(3, account.getUsername());
+            cs.setString(4, account.getPassword());
+            if (cs2.executeUpdate() > 0 ) {
+                if(cs.executeUpdate() > 0)
                 return true;
             }
         } catch (SQLException ex) {
@@ -266,7 +266,7 @@ public class Register {
                 user.setGender(rs.getInt("gender"));
                 user.setPhoneNumber(rs.getString("phoneNumber"));
             }
-            
+
         } catch (SQLException ex) {
             System.out.println("select data fail vv" + ex.toString());
         }
@@ -277,6 +277,6 @@ public class Register {
     public static void main(String[] args) throws ParseException {
         Register register = new Register();
         Account account = register.getAccountbyUsername("helloworld");
-       System.out.print(account.getUserId());
+        System.out.print(account.getUserId());
     }
 }

@@ -23,7 +23,8 @@ $(function () {
                 type: 'POST',
                 async: false,
                 success: function (data) {
-                        
+                    if(data.userId != 0)
+                        window.location.href="signIn.html";
                 },
                 error: function (data) {
 
@@ -31,24 +32,13 @@ $(function () {
             });
         }
         else
-            alert("sai thong tin");
+            alert("Sai vài thông tin \n Xin hãy nhập lại!");
 
         e.preventDefault();
         return false;
     });
 });
 
-function submitt() {
-    var checkuser = checkUserName($('#username').val());
-    var checkpass = checkPass($('#password').val());
-    var checkrp = checkRP($('#password').val(), $('#repeatpass').val());
-    var checkemail = checkEmail($('#email').val());
-    if (checkuser && checkpass && checkrp && checkemail) {
-        $('#signup').submit();
-    }
-    else
-        alert("sai thong tin");
-}
 
 function checkUserName(username) {
     var url = "./UserServlet?user_name=" + username;
