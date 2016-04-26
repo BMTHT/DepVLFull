@@ -10,7 +10,7 @@ function loadImage(page, theme) {
     if(data == null) return false;
     $.each(data, function (key, value) {
         var img = addImage(key + (page - 1) * 5 + 1);
-        console.log(img.parent());
+       // console.log(img.parent());
         var user = getUser(value.userId);
         $(img[0]).append(value.imgDescribe);
         img[1].src = value.imgUrl;
@@ -23,7 +23,16 @@ function loadImage(page, theme) {
         $(id).append(user.nickName);
         id = $(img[3]).children()[1];
         $(id).append(value.imgDate);
+        var list_comment = document.getElementById("list_comment");
+        var listCommentId = "list_comment_"+value.imgId;
+        list_comment.id = listCommentId;
         
+        
+        var comment = loadComment(value.imgId);
+        
+        $.each(comment,function(key1,value1){
+           createComment(value1,list_comment); 
+        });
 
 
 
@@ -75,26 +84,6 @@ function addImage(key) {
 
 }
 
-function getUser(userid) {
-    var url = "./UserServlet?userid=" + userid;
-    var user;
-    $.ajax({
-        url: url,
-        type: "GET",
-        dataType: "JSON",
-        async: false,
-        success: function (data) {
-            
-            user = data;
-            
-        },
-        error: function (a,b,c) {
-
-        }
-
-    });
-    return user;
-}
 
 function popup(id){
     $(id).webuiPopover({type:'iframe',url:'comment1.html', width:'500',height: '300',placement: 'top-left'});

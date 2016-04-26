@@ -21,3 +21,24 @@ function getUserSession() {
     });
     return user;
 }
+
+function getUser(userid) {
+    var url = "./UserServlet?userid=" + userid;
+    var user;
+    $.ajax({
+        url: url,
+        type: "GET",
+        dataType: "JSON",
+        async: false,
+        success: function (data) {
+            
+            user = data;
+            
+        },
+        error: function (a,b,c) {
+
+        }
+
+    });
+    return user;
+}

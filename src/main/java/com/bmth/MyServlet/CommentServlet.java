@@ -36,7 +36,7 @@ public class CommentServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("application/json");
-        String imgParameter = request.getParameter("imgid");
+        String imgParameter = request.getParameter("imgId");
         int imgId = Integer.parseInt(imgParameter);
         CommentDAO comment = new CommentDAO();
         ArrayList<Comment> listComment = comment.getAllCommentByImageId(imgId);

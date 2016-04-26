@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-function comment(image, name, src_info,messege){
+function comment(image, name, src_info, messege) {
     this.image = image;
     this.name = name;
     this.messege = messege;
@@ -14,47 +14,51 @@ function comment(image, name, src_info,messege){
 
 function showComment(id) {
     var visible = $("#list_comment").css("visibility");
-    if(visible == "hidden"){
-        $("#list_comment").css("visibility","visible");
+    if (visible == "hidden") {
+        $("#list_comment").css("visibility", "visible");
     }
-    else $("#list_comment").css("visibility","hidden");
+    else
+        $("#list_comment").css("visibility", "hidden");
 }
 
-function createComment (comment, id){
-    var account = document.createElement("div");
-    account.setAttribute("class","account");
+function createComment(comment, id) {
+
     
+    var user = getUser(comment.userId);
+    var account = document.createElement("div");
+    account.setAttribute("class", "account");
+
     var aAvatar = document.createElement("a");
-    aAvatar.href = comment.src_info;
-    aAvatar.title = comment.name;
+    aAvatar.href = "";
+    aAvatar.title = user.nickName;
     aAvatar.target = "_blank";
 
     var imgAvatar = document.createElement("img");
-    imgAvatar.src = comment.image;
-    
+    imgAvatar.src = user.avatarUrl;
+
     var aName = document.createElement("a");
-    aName.href = comment.src_info;
-    aAvatar.title = comment.name;
+    aName.href = "";
+    aAvatar.title = user.nickName;
     aName.target = "_blank";
-    
+
     var bName = document.createElement("b");
-    bName.appendChild(document.createTextNode(comment.name));
-    
+    bName.appendChild(document.createTextNode(user.nickName));
+
     aName.appendChild(bName);
     aAvatar.appendChild(imgAvatar);
-    
+
     var div_display = document.createElement("div");
-    div_display.setAttribute("class","comment_display");
-    
+    div_display.setAttribute("class", "comment_display");
+
     div_display.appendChild(document.createElement("p"));
     div_display.appendChild(
             document.createElement("p").appendChild(
-            document.createTextNode(comment.messege)
+            document.createTextNode(comment.comment)
             ));
     div_display.appendChild(document.createElement("p"));
-    
+
     account.appendChild(aName);
     account.appendChild(aAvatar);
     account.appendChild(div_display);
-    id.appemdChild(account);
+    id.appendChild(account);
 }
