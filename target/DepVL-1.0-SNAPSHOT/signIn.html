@@ -12,51 +12,55 @@ and open the template in the editor.
         <link href="css/bodyStyle.css" rel="stylesheet" type="text/css"/>
         <link href="css/top_style.css" rel="stylesheet" type="text/css"/>
         <link href="css/loginStyle.css" rel="stylesheet" type="text/css"/>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <!-- Latest compiled JavaScript -->
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <script src="jsp/rank.js" type="text/javascript"></script>
         <link href="css/rankStyle.css" rel="stylesheet" type="text/css"/>
          <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
         <script src="JS/login.js" type="text/javascript"></script>
     </head>
     <body>
-        <header>
-            <div class="container_group">
-                <div class="logo">
-                    <a href="/Deeee222d3rdddddddddddlde2212rw11" title="Trang chủ">
-                        <img src="img/logo/depvl3.png" alt=""/>
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid" style="width: 80%">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/DepVL">
+                        Đẹp VL
                     </a>
                 </div>
-                <div class="menu">
-                    <ul>
-                        <li><a href="/Deeee222d3rdddddddddddlde2212rw11" title="Trang chủ">Trang chủ</a></li>
-                        <li><a href="/Deeee222d3rdddddddddddlde2212rw11" title="Ảnh mới">Khám phá</a></li>
-                        <li><a href="#" title="Top ảnh trong tuần">Ảnh đẹp vl</a></li>
-                        <li>
-                            <a href="#" title="Ảnh theo chủ đề">Chuyên mục </a>
-                            <ul>
-                                <li><a href="/Deeee222d3rdddddddddddlde2212rw11?category=nature" >Thiên nhiên</a></li>
-                                <li><a href="/Deeee222d3rdddddddddddlde2212rw11?category=portrait">Chân dung</a></li>
-                                <li><a href="/Deeee222d3rdddddddddddlde2212rw11?category=hotgirl">Hot Girl</a></li>
-                                <li><a href="/Deeee222d3rdddddddddddlde2212rw11?category=stilllife">Tĩnh vật</a></li>
-                                <li><a href="/Deeee222d3rdddddddddddlde2212rw11?category=other">Khác</a></li>
-
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="/DepVL" title="Trang chủ">Trang chủ</a></li>
+                        <li><a href="/DepVL" title="Ảnh mới">Khám phá</a></li>
+                        <li><a href="topImage.html" title="Top ảnh trong tuần">Ảnh đẹp vl</a></li>
+                        <li class="dropdown">
+                            <a href="#" title="Ảnh theo chủ đề" class="dropdown-toggle" data-toggle="dropdown">
+                                Chuyên mục 
+                                <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/DepVL?category=nature" >Thiên nhiên</a></li>
+                                <li><a href="/DepVL?category=portrait">Chân dung</a></li>
+                                <li><a href="/DepVL?category=hotgirl">Hot Girl</a></li>
+                                <li><a href="/DepVL?category=stilllife">Tĩnh vật</a></li>
+                                <li><a href="/DepVL?category=other">Khác</a></li>
                             </ul>
                         </li>
-
                     </ul>
-                </div>
-
-                <div class="sign_in">
-                    <ul>
-                        <li id="avatar"><a id="login" href="signIn.html">Đăng nhập</a></li>
-                        <li>
-                            <a href="#" style="margin: 10px 0 0 0">
-                                <img src="img/logo/upload1.png" alt="upload"/>
-                            </a>
-                        </li>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li id="avatar"><a id="login" href="signIn.html" style="padding-bottom: 5px; padding-top: 10px"><span class="btn btn-danger">Đăng nhập</span></a></li>
                     </ul>
                 </div>
             </div>
-        </header>
+        </nav>
         <div id="main" class="main" style="background: #FFFFFF">
             <div class="login" id="form" >
                 <form class="box" id="form2">

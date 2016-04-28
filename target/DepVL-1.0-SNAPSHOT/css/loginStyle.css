@@ -79,3 +79,12 @@ and open the template in the editor.
 .sex input {
     width: 10%;
 }
+
+.upload {
+    width: 50%;
+    float: left;
+    margin-left: 10%;
+    margin-top: 10%;
+    padding: 20px;
+    background: #ffffff
+}

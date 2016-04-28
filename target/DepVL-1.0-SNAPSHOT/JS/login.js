@@ -14,7 +14,7 @@ $(function () {
             async: false,
             success: function (data) {
                 if (data.id != 0) {
-                    window.location.href = "index.html";
+                    window.location.href = "/DepVL";
                 } else
                     alert("Sai tài khoản hoặc mật khẩu! \n Vui lòng nhập lại  ");
             },

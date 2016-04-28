@@ -13,17 +13,18 @@ function comment(image, name, src_info, messege) {
 
 
 function showComment(id) {
-    var visible = $("#list_comment").css("visibility");
+    var listCommentId = '#list_comment_' + id;
+    var visible = $(listCommentId).css("visibility");
     if (visible == "hidden") {
-        $("#list_comment").css("visibility", "visible");
+        $(listCommentId).css("visibility", "visible");
     }
     else
-        $("#list_comment").css("visibility", "hidden");
+        $(listCommentId).css("visibility", "hidden");
 }
 
 function createComment(comment, id) {
 
-    
+
     var user = getUser(comment.userId);
     var account = document.createElement("div");
     account.setAttribute("class", "account");
@@ -61,4 +62,34 @@ function createComment(comment, id) {
     account.appendChild(aAvatar);
     account.appendChild(div_display);
     id.appendChild(account);
+}
+
+function addComment(user,id) {
+    var account = document.createElement("div");
+    account.setAttribute("class", "account");
+
+    var aAvatar = document.createElement("a");
+    aAvatar.href = "";
+    aAvatar.title = user.nickName;
+    aAvatar.target = "_blank";
+
+    var imgAvatar = document.createElement("img");
+    imgAvatar.src = user.avatarUrl;
+     aAvatar.appendChild(imgAvatar);
+     
+     var text = document.createElement("textarea");
+     text.rows="3";
+     text.placeholder="Add a comment...";
+     text.tabindex="2";
+     text.name="message";
+     
+     var button = document.createElement("button");
+     button.type = "button";
+     button.appendChild(document.createTextNode("Binh luan"));
+     account.appendChild(aAvatar);
+     account.appendChild(text);
+     account.appendChild(button);
+     id.appendChild(account);     
+
+    
 }

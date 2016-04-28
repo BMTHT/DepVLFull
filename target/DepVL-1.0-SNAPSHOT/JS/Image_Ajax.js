@@ -6,11 +6,11 @@
 function loadImage(page, theme) {
     
     var data = getImageData(page,theme);
-    
+    var userSession = getUserSession();
     if(data == null) return false;
     $.each(data, function (key, value) {
         var img = addImage(key + (page - 1) * 5 + 1);
-       // console.log(img.parent());
+        
         var user = getUser(value.userId);
         $(img[0]).append(value.imgDescribe);
         img[1].src = value.imgUrl;
@@ -23,16 +23,23 @@ function loadImage(page, theme) {
         $(id).append(user.nickName);
         id = $(img[3]).children()[1];
         $(id).append(value.imgDate);
+        var showcomment = "showComment(" + value.imgId + ")";
+        id = $(img[4]).children()[0];
+        $(id).attr("onclick",showcomment);
         var list_comment = document.getElementById("list_comment");
         var listCommentId = "list_comment_"+value.imgId;
         list_comment.id = listCommentId;
-        
-        
+    //    console.log(list_comment1);
         var comment = loadComment(value.imgId);
-        
         $.each(comment,function(key1,value1){
            createComment(value1,list_comment); 
         });
+        if(userSession.userId != 0 ){
+            addComment(userSession,list_comment);
+        }else{
+            list_comment.appendChild(document.createElement("p").appendChild(document.createTextNode("Dang nhap de binh luan")));
+        }
+        
 
 
 
