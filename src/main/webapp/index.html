@@ -10,7 +10,7 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="css/top_style.css" rel="stylesheet" type="text/css"/>
-        <link href="css/bodyStyle.css" rel="stylesheet" type="text/css"/>
+
         <link href="css/picture.css" rel="stylesheet" type="text/css"/>
         <link href="css/pagination.css" rel="stylesheet" type="text/css"/>
         <link href="css/rankStyle.css" rel="stylesheet" type="text/css"/>
@@ -24,6 +24,7 @@ and open the template in the editor.
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
         <!-- Latest compiled JavaScript -->
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <link href="css/bodyStyle.css" rel="stylesheet" type="text/css"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
         <script src="jsp/createImage.js" type="text/javascript"></script>
         <script src="jsp/showComment.js" type="text/javascript"></script>
@@ -65,10 +66,17 @@ and open the template in the editor.
                 var avatar = document.getElementById("avatar");
                 if (user.userId !== 0) {
                     login.remove();
+                    var a = document.createElement("a");
+                    a.href = "profile.html";
+                    a.style = "height: 50px; width: 50px";
                     var img = document.createElement("img");
-                    img.src = "/a.jpg";
+                    img.style = "height: 45px; width: 45px";
+                    img.src = user.avatarUrl;
                     img.alt = user.nickName;
-                    avatar.appendChild(img);
+                    img.href = "profile.html";
+                    a.appendChild(img);
+                    avatar.appendChild(a);
+                       
                 }
 
             });
@@ -114,7 +122,7 @@ and open the template in the editor.
                             </ul>
                         </li>
                     </ul>
-                    <ul class="nav navbar-nav navbar-right">
+                    <ul class="nav navbar-nav navbar-right" id="loginbar">
                         <li id="avatar"><a id="login" href="signIn.html" style="padding-bottom: 5px; padding-top: 10px"><span class="btn btn-danger">Đăng nhập</span></a></li>
                     </ul>
                 </div>
@@ -210,9 +218,9 @@ and open the template in the editor.
                     <img src="img/logo/depvl3.png" alt="depvl" style="margin-top: 15px;"/>
                 </div>
                 <div class="col-sm-6">
-                    
+
                 </div>
-                     
+
                 <div class="col-sm-3 text-right" style="margin-top: 20px;">
                     <a href="https://www.facebook.com/quang.thang.0502">
                         <img src="img/icon/facebook.png" alt="facebook" style="width: 20px; height: 20px;">
@@ -223,10 +231,10 @@ and open the template in the editor.
                     <a href="https://twitter.com/quangthang0502">
                         <img src="img/icon/twitter.png" alt="twitter" style="width: 20px; height: 20px;"/>
                     </a>
-                     <h3 style="margin: 0">Team BTMTH</h3>
+                    <h3 style="margin: 0">Team BTMTH</h3>
                     <p style="margin-bottom: 0;">Designer : NotMe</p>
                 </div>
-                
+
             </div>
         </footer>
     </body>

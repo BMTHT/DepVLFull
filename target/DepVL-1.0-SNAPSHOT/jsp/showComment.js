@@ -78,6 +78,7 @@ function addComment(user,id) {
      aAvatar.appendChild(imgAvatar);
      
      var text = document.createElement("textarea");
+     text.id = "text" + user.userId;
      text.rows="3";
      text.placeholder="Add a comment...";
      text.tabindex="2";
@@ -91,5 +92,9 @@ function addComment(user,id) {
      account.appendChild(button);
      id.appendChild(account);     
 
+    
+}
+
+function commentOnClick(){
     
 }

@@ -3,7 +3,7 @@
 $(function () {
 
     $('#form').submit(function (e) {
-        
+
         var data = $('#form2').serialize();
         var url = "./LoginServlet?act=login";
         $.ajax({
@@ -26,3 +26,17 @@ $(function () {
         return false;
     });
 });
+
+function createAvatar(user) {
+    var loginbar = document.getElementById("loginbar");
+    var avatar = document.getElementById("avatar");
+    if (user.userId !== 0) {
+        avatar.remove();
+       var li1 = document.createElement("li");
+       li1.class = "dropdown";
+       var a1 = document.createElement("a");
+       a1.
+       
+
+    }
+}
