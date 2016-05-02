@@ -20,6 +20,10 @@
         <servlet-name>RegisterServlet</servlet-name>
         <servlet-class>com.bmth.MyServlet.RegisterServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PointServlet</servlet-name>
+        <servlet-class>com.bmth.MyServlet.PointServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ImageServlet</servlet-name>
         <url-pattern>/ImageServlet</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/RegisterServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PointServlet</servlet-name>
+        <url-pattern>/PointServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

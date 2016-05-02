@@ -6,25 +6,25 @@
 function loadImage(page, theme) {
     
     var data = getImageData(page,theme);
+    console.log(data);
     var userSession = getUserSession();
     if(data == null) return false;
-    $.each(data, function (key, value) {
+   $.each(data, function (key, value) {
         var img = addImage(key + (page - 1) * 5 + 1);
-        
         var user = getUser(value.userId);
-        $(img[0]).append(value.imgDescribe);
-        img[1].src = value.imgUrl;
-        img[1].alt = value.theme;
-        var id = $(img[5]).children()[0];
+        img[0].src = value.imgUrl;
+        img[0].alt = value.theme;
+        var id = $(img[6]).children()[0];
         $(id).append(value.point);
-        id = $(img[2]).children()[0];
+        $(img[3]).append(value.imgDescribe);
+        id = $(img[1]).children()[0];
         id.src = user.avatarUrl;
-        id = $(img[3]).children()[0];
+        id = $(img[2]).children()[0];
         $(id).append(user.nickName);
-        id = $(img[3]).children()[1];
+        id = $(img[4]);
         $(id).append(value.imgDate);
         var showcomment = "showComment(" + value.imgId + ")";
-        id = $(img[4]).children()[0];
+        id = $(img[5]).children()[0];
         $(id).attr("onclick",showcomment);
         var list_comment = document.getElementById("list_comment");
         var listCommentId = "list_comment_"+value.imgId;
@@ -38,11 +38,7 @@ function loadImage(page, theme) {
             addComment(userSession,list_comment);
         }else{
             list_comment.appendChild(document.createElement("p").appendChild(document.createTextNode("Dang nhap de binh luan")));
-        }
-        
-
-
-
+        }        
     });
     return true;
 
@@ -60,8 +56,8 @@ function getImageData(page, theme) {
             
            data1= data;
         },
-        error: function(){
-            
+        error: function(a,b,c){
+            console.log(a+b+c);
             return null;
         }
        
@@ -77,7 +73,7 @@ function addImage(key) {
     $(div_pre).after(newElement);
     var test = $("#" + id);
     $.ajax({
-        url: 'image.html',
+        url: 'testimage.html',
         type: 'get',
         async: false,
         success: function (html) {

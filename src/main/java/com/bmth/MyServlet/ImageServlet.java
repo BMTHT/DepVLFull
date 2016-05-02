@@ -36,15 +36,23 @@ public class ImageServlet extends HttpServlet {
         String pr = request.getParameter("page");
         int page = Integer.parseInt(pr);
         String theme = request.getParameter("theme");
-            
         ImageDAO img = new ImageDAO();
+        boolean checkNumber = isNumberr(theme);
+
         int index = img.getNumberRowTableImage();
-        index = index - page*5 > 0 ? index-page*5 : 0;
-        List<Image> listImage = img.getFiveImageByTheme(index,theme);
+        index = index - page * 5 > 0 ? index - page * 5 : 0;
+        List<Image> listImage = img.getFiveImageByTheme(index, theme);
         Gson gson = new Gson();
         String json = gson.toJson(listImage);
+
+        if (checkNumber) {
+            int id = Integer.parseInt(theme);
+            index = index - page * 5 > 0 ? index - page * 5 : 0;
+            listImage = img.getFiveImageByUserId(index, id);
+            json = gson.toJson(listImage);
+
+        }
         response.getWriter().write(json);
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -86,4 +94,12 @@ public class ImageServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+    private static boolean isNumberr(String s) {
+        try {
+            int d = Integer.parseInt(s);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
+    }
 }
