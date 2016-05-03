@@ -36,7 +36,13 @@ public class MyConnection {
         }
         return connection;
     }
-    
+    public static void close(Connection connection){
+        try {
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(MyConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     public static void main(String[] args){
         MyConnection myConnect = new MyConnection();
         myConnect.Connect();

@@ -46,6 +46,7 @@ public class Register {
         } catch (SQLException ex) {
             System.out.println("Select fail " + ex.toString());
         }
+        MyConnection.close(conn);
         return accountList;
     }
 
@@ -63,6 +64,7 @@ public class Register {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+        MyConnection.close(conn);
         return numberRow;
     }
 
@@ -81,8 +83,10 @@ public class Register {
             }
         } catch (SQLException ex) {
             System.out.println("Check fail " + ex.toString());
+            
             return false;
         }
+        
         return true;
     }
 
@@ -120,6 +124,7 @@ public class Register {
             System.out.println("Check fail " + ex.toString());
             return false;
         }
+
         return false;
     }
 
@@ -141,7 +146,7 @@ public class Register {
         } catch (SQLException ex) {
             System.out.println("select data fail " + ex.toString());
         }
-
+        MyConnection.close(conn);
         return account;
     }
 
@@ -159,7 +164,7 @@ public class Register {
             ps.execute();
             int userId = getNumberRowTable("user") + 1;
             PreparedStatement cs2 = conn.prepareStatement(command2);
-            cs2.setInt(1,userId );
+            cs2.setInt(1, userId);
             cs2.setString(2, account.getFullName());
             cs2.setString(3, account.getNickName());
             cs2.setString(4, account.getBirthdayToString());
@@ -174,14 +179,17 @@ public class Register {
             cs.setInt(2, userId);
             cs.setString(3, account.getUsername());
             cs.setString(4, account.getPassword());
-            if (cs2.executeUpdate() > 0 ) {
-                if(cs.executeUpdate() > 0)
-                return true;
+            if (cs2.executeUpdate() > 0) {
+                if (cs.executeUpdate() > 0) {
+                    MyConnection.close(conn);
+                    return true;
+                }
             }
         } catch (SQLException ex) {
             System.out.println("Insert data fail " + ex.toString());
             return false;
         }
+        MyConnection.close(conn);
         return false;
     }
 
@@ -201,13 +209,16 @@ public class Register {
             cs.setString(8, account.getAvatarUrl());
             cs.setInt(9, account.getId());
             if (cs.executeUpdate() > 0) {
+                MyConnection.close(conn);
                 return true;
             }
             System.out.println("Update data succeed ");
         } catch (SQLException ex) {
             System.out.println("Update data fail " + ex.toString());
+            MyConnection.close(conn);
             return false;
         }
+        MyConnection.close(conn);
         return true;
     }
 
@@ -228,6 +239,7 @@ public class Register {
         } catch (SQLException ex) {
             System.out.println("delete fail " + ex.toString());
         }
+        MyConnection.close(conn);
     }
 
     public void insertAccount(Account account) {
@@ -245,6 +257,7 @@ public class Register {
         } catch (SQLException ex) {
             System.out.println("fail " + ex.toString());
         }
+        MyConnection.close(conn);
     }
 
     public User getUserById(int id) {
@@ -270,7 +283,7 @@ public class Register {
         } catch (SQLException ex) {
             System.out.println("select data fail vv" + ex.toString());
         }
-
+        // MyConnection.close(conn);
         return user;
     }
 

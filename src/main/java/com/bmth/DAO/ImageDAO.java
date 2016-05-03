@@ -40,6 +40,7 @@ public class ImageDAO {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+        MyConnection.close(conn);
         return numberRow;
     }
     
@@ -65,6 +66,7 @@ public class ImageDAO {
         } catch (SQLException ex) {
             Logger.getLogger(ImageDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+        MyConnection.close(conn);
         return imageList;
     }
     
@@ -90,6 +92,7 @@ public class ImageDAO {
         } catch (SQLException ex) {
             Logger.getLogger(ImageDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+        MyConnection.close(conn);
         return imageList;
     }
     
@@ -121,6 +124,7 @@ public class ImageDAO {
         } catch (SQLException ex) {
             Logger.getLogger(ImageDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+        MyConnection.close(conn);
         return imageList;
     }
     
@@ -147,6 +151,7 @@ public class ImageDAO {
         } catch (SQLException ex) {
             Logger.getLogger(ImageDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+        MyConnection.close(conn);
         return imageList;
     }
     
@@ -173,6 +178,7 @@ public class ImageDAO {
         } catch (SQLException ex) {
             Logger.getLogger(ImageDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+        MyConnection.close(conn);
         return imageList;
     } 
     
@@ -199,6 +205,7 @@ public class ImageDAO {
         } catch (SQLException ex) {
             Logger.getLogger(ImageDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+        MyConnection.close(conn);
         return imageList;
     }
     
@@ -220,6 +227,7 @@ public class ImageDAO {
             dem++;
             imageList.remove(max);
         }
+        MyConnection.close(conn);
         return imageRank;
     }
     
@@ -248,6 +256,7 @@ public class ImageDAO {
         } catch (SQLException ex) {
             System.out.println("Insert data fail " + ex.toString());
         }
+        MyConnection.close(conn);
     }
     
     //get image by imgId
@@ -274,6 +283,7 @@ public class ImageDAO {
         } catch (SQLException ex) {
             System.out.println("select data fail " + ex.toString());
         }
+        MyConnection.close(conn);
         return image;
     }
     
@@ -290,6 +300,7 @@ public class ImageDAO {
         } catch (SQLException ex) {
             Logger.getLogger(ImageDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+        MyConnection.close(conn);
     }
     
     //edit discribe of image
@@ -305,6 +316,7 @@ public class ImageDAO {
         } catch (SQLException ex) {
             Logger.getLogger(ImageDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+        MyConnection.close(conn);
     }
     
     public static void main(String[] args) throws ParseException{

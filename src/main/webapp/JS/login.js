@@ -27,7 +27,8 @@ $(function () {
     });
 });
 
-function createAvatar(user) {
+function createAvatar(userid) {
+    var user = getUser(userid);
     var loginbar = document.getElementById("loginbar");
     var avatar = document.getElementById("avatar");
     avatar.remove();
@@ -63,8 +64,8 @@ function createAvatar(user) {
     li_.appendChild(a3);
     ul.appendChild(li_);
     var a4 = document.createElement("a");
-    a4.href = "#";
-    a4.appendChild(document.createTextNode("Dang xuat"));
+    a4.href="javascript:logout()";
+    a4.appendChild(document.createTextNode("Đăng xuất"));
     var li__ = document.createElement("li");
     li__.appendChild(a4);
     ul.appendChild(li__);

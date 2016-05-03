@@ -6,10 +6,13 @@
 function loadImage(page, theme) {
     
     var data = getImageData(page,theme);
-    console.log(data);
     var userSession = getUserSession();
     if(data == null) return false;
    $.each(data, function (key, value) {
+       if(value.imgId == 0) {
+           $('#loadmorebutton').hide();
+           return;
+       }
         var img = addImage(key + (page - 1) * 5 + 1);
         var user = getUser(value.userId);
         img[0].src = value.imgUrl;
@@ -20,6 +23,8 @@ function loadImage(page, theme) {
         id = $(img[1]).children()[0];
         id.src = user.avatarUrl;
         id = $(img[2]).children()[0];
+        var url = "profile.html?id="+user.userId;
+        img[2].href = url;
         $(id).append(user.nickName);
         id = $(img[4]);
         $(id).append(value.imgDate);

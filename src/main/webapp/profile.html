@@ -6,7 +6,7 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>Quang Thắng</title>
+        <title id="title"></title>
         <meta charset="UTF-8">
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,6 +28,7 @@ and open the template in the editor.
         <script src="JS/login.js" type="text/javascript"></script>
         <script src="JS/comment.js" type="text/javascript"></script>
         <script src ="JS/profile.js" type="text/javascript"></script>
+        <script src ="JS/logout.js" type="text/javascript"></script>
         <script>
             function getQueryVariable(variable) {
                 var query = window.location.search.substring(1);
@@ -44,6 +45,10 @@ and open the template in the editor.
         <script>
             $(document).ready(function () {
                 var userid = getQueryVariable("id");
+                var userSession = getUserSession();
+                if (userSession.userId != 0) {
+                    createAvatar(userSession.userId);
+                }
                 loadImage(1, userid);
                 profile(userid);
             });
@@ -80,20 +85,8 @@ and open the template in the editor.
                             </ul>
                         </li>
                     </ul>
-                    <ul class="nav navbar-nav navbar-right" >
-                        <li class="dropdown">
-                            <a style="padding: 0;" href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <img src="img/avatar/images.jpg" alt="avatar" class="img-circle" style="width: 45px; height: 45px;">
-                                <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu" style="left: 0;">
-                                <li><a href="#">Quang Thắng</a></li>
-                                <li><a href="upload.html">Upload</a></li>
-                                <li><a href="#">Đăng xuất</a></li>
-                            </ul>
-                        </li>
-
-
+                    <ul class="nav navbar-nav navbar-right" id="loginbar" >
+                        <li id="avatar"><a id="login" href="signIn.html" style="padding-bottom: 5px; padding-top: 10px"><span class="btn btn-danger">Đăng nhập</span></a></li>
                     </ul>
                 </div>
             </div>

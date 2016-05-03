@@ -6,6 +6,8 @@
 
 function profile(userid){
     var user = getUser(userid);
+    var title = document.getElementById("title");
+    title.appendChild(document.createTextNode(user.nickName));
     var nickname = document.getElementById("nickname");
     nickname.appendChild(document.createTextNode(user.nickName));
     var avatar = document.getElementById("avatar");

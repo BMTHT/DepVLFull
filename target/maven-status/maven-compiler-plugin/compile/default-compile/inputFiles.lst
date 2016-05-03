@@ -3,10 +3,12 @@
 /home/quangbach/Desktop/DepVLFull/src/main/java/com/bmth/bean/Comment.java
 /home/quangbach/Desktop/DepVLFull/src/main/java/com/bmth/MyServlet/CommentServlet.java
 /home/quangbach/Desktop/DepVLFull/src/main/java/com/bmth/bean/User.java
+/home/quangbach/Desktop/DepVLFull/src/main/java/com/bmth/MyServlet/PointServlet.java
 /home/quangbach/Desktop/DepVLFull/src/main/java/com/bmth/DAO/CommentDAO.java
 /home/quangbach/Desktop/DepVLFull/src/main/java/com/bmth/MyServlet/RegisterServlet.java
 /home/quangbach/Desktop/DepVLFull/src/main/java/com/bmth/bean/Account.java
 /home/quangbach/Desktop/DepVLFull/src/main/java/com/bmth/MyServlet/ImageServlet.java
+/home/quangbach/Desktop/DepVLFull/src/main/java/LogoutServlet.java
 /home/quangbach/Desktop/DepVLFull/src/main/java/com/bmth/DAO/ImageDAO.java
 /home/quangbach/Desktop/DepVLFull/src/main/java/com/bmth/MyServlet/LoginServlet.java
 /home/quangbach/Desktop/DepVLFull/src/main/java/com/bmth/DatabaseConnection/MyConnection.java

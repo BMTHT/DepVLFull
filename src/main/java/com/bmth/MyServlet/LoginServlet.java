@@ -53,7 +53,7 @@ public class LoginServlet extends HttpServlet {
             String json = "{\"userId\" : 0}";
             response.getWriter().write(json);
         } else {
-            User user = res.getUserById(account.getId());
+            User user = res.getUserById(account.getUserId());
             String json = gson.toJson(user);
             response.getWriter().write(json);
         }

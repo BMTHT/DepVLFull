@@ -37,7 +37,9 @@ public class CommentDAO {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+        MyConnection.close(conn);
         return numberRow;
+        
     }
     
     public void AddComment(Comment comment){
@@ -61,6 +63,7 @@ public class CommentDAO {
         } catch (SQLException ex) {
             System.out.println("Insert data fail " + ex.toString());
         }
+        MyConnection.close(conn);
     }
     
     public ArrayList<Comment> getAllCommentByImageId(int imgId){
@@ -83,6 +86,7 @@ public class CommentDAO {
         } catch (SQLException ex) {
             Logger.getLogger(ImageDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+        MyConnection.close(conn);
         return commentList;
     }
     

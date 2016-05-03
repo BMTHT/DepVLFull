@@ -42,6 +42,11 @@ public class ImageServlet extends HttpServlet {
         int index = img.getNumberRowTableImage();
         index = index - page * 5 > 0 ? index - page * 5 : 0;
         List<Image> listImage = img.getFiveImageByTheme(index, theme);
+        if(listImage.size() < 5) {
+            Image nullImage = new Image();
+            nullImage.setImgId(0);
+            listImage.add(nullImage);
+        }
         Gson gson = new Gson();
         String json = gson.toJson(listImage);
 
@@ -49,6 +54,11 @@ public class ImageServlet extends HttpServlet {
             int id = Integer.parseInt(theme);
             index = index - page * 5 > 0 ? index - page * 5 : 0;
             listImage = img.getFiveImageByUserId(index, id);
+            if(listImage.size() != 5) {
+            Image nullImage = new Image();
+            nullImage.setImgId(0);
+            listImage.add(nullImage);
+        }
             json = gson.toJson(listImage);
 
         }
