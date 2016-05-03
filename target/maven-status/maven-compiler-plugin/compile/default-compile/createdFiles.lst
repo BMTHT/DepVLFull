@@ -1,10 +1,16 @@
+LogoutServlet.class
+com/bmth/MyServlet/RegisterServlet.class
 com/bmth/MyServlet/ImageServlet.class
+com/bmth/MyServlet/CommentServlet.class
 com/bmth/DAO/Register.class
 com/bmth/bean/Account.class
 com/bmth/bean/Comment.class
 com/bmth/bean/User.class
 com/bmth/MyServlet/UserServlet.class
+com/bmth/MyServlet/PointServlet.class
 com/bmth/bean/Image.class
+com/bmth/MyServlet/UploadServlet.class
 com/bmth/DAO/CommentDAO.class
 com/bmth/DatabaseConnection/MyConnection.class
+com/bmth/MyServlet/LoginServlet.class
 com/bmth/DAO/ImageDAO.class

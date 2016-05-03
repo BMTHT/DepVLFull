@@ -57,7 +57,7 @@ public class ImageDAO {
                 image.setImgId(rs.getInt(1));
                 image.setUserId(rs.getInt(2));
                 image.setImgDescribe(rs.getString(3));
-                image.setImgDate(rs.getDate(4));
+                image.setImgDate(rs.getDate(4).getTime());
                 image.setTheme(rs.getString(5));
                 image.setPoint(rs.getFloat(6));
                 image.setImgUrl(rs.getString(7));
@@ -83,7 +83,7 @@ public class ImageDAO {
                 image.setImgId(rs.getInt(1));
                 image.setUserId(rs.getInt(2));
                 image.setImgDescribe(rs.getString(3));
-                image.setImgDate(rs.getDate(4));
+                image.setImgDate(rs.getDate(4).getTime());
                 image.setTheme(rs.getString(5));
                 image.setPoint(rs.getFloat(6));
                 image.setImgUrl(rs.getString(7));
@@ -115,7 +115,7 @@ public class ImageDAO {
                 image.setImgId(rs.getInt(1));
                 image.setUserId(rs.getInt(2));
                 image.setImgDescribe(rs.getString(3));
-                image.setImgDate(rs.getDate(4));
+                image.setImgDate(rs.getDate(4).getTime());
                 image.setTheme(rs.getString(5));
                 image.setPoint(rs.getFloat(6));
                 image.setImgUrl(rs.getString(7));
@@ -142,7 +142,7 @@ public class ImageDAO {
                 image.setImgId(rs.getInt(1));
                 image.setUserId(rs.getInt(2));
                 image.setImgDescribe(rs.getString(3));
-                image.setImgDate(rs.getDate(4));
+                image.setImgDate(rs.getDate(4).getTime());
                 image.setTheme(rs.getString(5));
                 image.setPoint(rs.getFloat(6));
                 image.setImgUrl(rs.getString(7));
@@ -169,7 +169,7 @@ public class ImageDAO {
                 image.setImgId(rs.getInt(1));
                 image.setUserId(rs.getInt(2));
                 image.setImgDescribe(rs.getString(3));
-                image.setImgDate(rs.getDate(4));
+                image.setImgDate(rs.getDate(4).getTime());
                 image.setTheme(rs.getString(5));
                 image.setPoint(rs.getFloat(6));
                 image.setImgUrl(rs.getString(7));
@@ -196,7 +196,7 @@ public class ImageDAO {
                 image.setImgId(rs.getInt(1));
                 image.setUserId(rs.getInt(2));
                 image.setImgDescribe(rs.getString(3));
-                image.setImgDate(rs.getDate(4));
+                image.setImgDate(rs.getDate(4).getTime());
                 image.setTheme(rs.getString(5));
                 image.setPoint(rs.getFloat(6));
                 image.setImgUrl(rs.getString(7));
@@ -272,7 +272,7 @@ public class ImageDAO {
                 image.setImgId(rs.getInt(1));
                 image.setUserId(rs.getInt(2));
                 image.setImgDescribe(rs.getString(3));
-                image.setImgDate(rs.getDate(4));
+                image.setImgDate(rs.getDate(4).getTime());
                 image.setTheme(rs.getString(5));
                 image.setPoint(rs.getFloat(6));
                 image.setImgUrl(rs.getString(7));

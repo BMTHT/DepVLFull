@@ -70,8 +70,9 @@ public class Image {
         return imgDate;
     }
 
-    public void setImgDate(Date imgDate) {
-        this.imgDate = imgDate;
+    public void setImgDate(long imgDate) {
+        Date date = new Date(imgDate);
+        this.imgDate = date;
     }
 
     public String getTheme() {
