@@ -42,7 +42,7 @@ public class UploadServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    public static final String UPLOAD_DIRECTORY = "/home/quangbach/Desktop/DepVLFull/target";
+    public static final String UPLOAD_DIRECTORY = "/home/quangbach/tomcat8/webapps/Image";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -79,11 +79,11 @@ public class UploadServlet extends HttpServlet {
                         String contentType = item.getContentType();
                         String [] ext = contentType.split("/");
                         
-                        String fileName = UPLOAD_DIRECTORY + File.separator + user.getUserId() + "_" + imgId + "." + ext[1];
+                        String fileName = UPLOAD_DIRECTORY + File.separator + user.getUserId() + "_" + imgId  ;
                         File file = new File(fileName);
                         item.write(file);
                         
-                        image.setImgUrl(fileName);
+                        image.setImgUrl("http://localhost:8080/Image/"+ file.getName());
                     } else {
                         String fieldName = item.getFieldName();
                         if (fieldName.equals("status")) {

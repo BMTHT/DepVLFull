@@ -9,8 +9,8 @@
 /home/quangbach/Desktop/DepVLFull/src/main/java/com/bmth/MyServlet/RegisterServlet.java
 /home/quangbach/Desktop/DepVLFull/src/main/java/com/bmth/bean/Account.java
 /home/quangbach/Desktop/DepVLFull/src/main/java/com/bmth/MyServlet/ImageServlet.java
-/home/quangbach/Desktop/DepVLFull/src/main/java/LogoutServlet.java
 /home/quangbach/Desktop/DepVLFull/src/main/java/com/bmth/DAO/ImageDAO.java
 /home/quangbach/Desktop/DepVLFull/src/main/java/com/bmth/MyServlet/LoginServlet.java
 /home/quangbach/Desktop/DepVLFull/src/main/java/com/bmth/DatabaseConnection/MyConnection.java
+/home/quangbach/Desktop/DepVLFull/src/main/java/com/bmth/MyServlet/LogoutServlet.java
 /home/quangbach/Desktop/DepVLFull/src/main/java/com/bmth/DAO/Register.java

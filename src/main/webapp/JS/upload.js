@@ -17,7 +17,7 @@ $(function () {
             success: function (data) {
                if(data.message == "success"){
                    alert("Upload Thanh cong");
-                   windown.location.href="/DepVL";
+                   window.location.href="/DepVL";
                }
             },
             error: function (data) {

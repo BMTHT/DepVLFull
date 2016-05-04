@@ -1,8 +1,8 @@
-LogoutServlet.class
 com/bmth/MyServlet/RegisterServlet.class
 com/bmth/MyServlet/ImageServlet.class
 com/bmth/MyServlet/CommentServlet.class
 com/bmth/DAO/Register.class
+com/bmth/MyServlet/LogoutServlet.class
 com/bmth/bean/Account.class
 com/bmth/bean/Comment.class
 com/bmth/bean/User.class

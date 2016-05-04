@@ -40,7 +40,7 @@ public class ImageServlet extends HttpServlet {
         boolean checkNumber = isNumberr(theme);
 
         int index = img.getNumberRowTableImage();
-        index = index - page * 5 > 0 ? index - page * 5 : 0;
+        index = (page-1) * 5;// > 0 ? index - page * 5 -1: (page-1)*5;
         List<Image> listImage = img.getFiveImageByTheme(index, theme);
         if(listImage.size() < 5) {
             Image nullImage = new Image();
