@@ -66,9 +66,10 @@ public class UploadServlet extends HttpServlet {
                 // Parse the request
                 List<FileItem> multiparts = upload.parseRequest(request);
                 ImageDAO img = new ImageDAO();
-                int imgId = (img.getNumberRowTableImage() + 1);
+                String imgId = user.getUserId() + "" + (img.getAllImageUserId(user.getUserId()).size() + 1);
+                int imageId = Integer.parseInt(imgId);
                 Image image = new Image();
-                image.setImgId(imgId);
+                image.setImgId(imageId);
                 image.setUserId(user.getUserId());
                 image.setPoint(0f);
                 image.setImgDate(Calendar.getInstance().getTimeInMillis());
@@ -77,13 +78,12 @@ public class UploadServlet extends HttpServlet {
 
                     if (!item.isFormField()) {
                         String contentType = item.getContentType();
-                        String [] ext = contentType.split("/");
-                        
-                        String fileName = UPLOAD_DIRECTORY + File.separator + user.getUserId() + "_" + imgId  ;
+                        String[] ext = contentType.split("/");
+
+                        String fileName = UPLOAD_DIRECTORY + File.separator + user.getUserId() + "_" + imgId;
                         File file = new File(fileName);
                         item.write(file);
-                        
-                        image.setImgUrl("http://localhost:8080/Image/"+ file.getName());
+                        image.setImgUrl("http://localhost:8080/Image/" + file.getName());
                     } else {
                         String fieldName = item.getFieldName();
                         if (fieldName.equals("status")) {

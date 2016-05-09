@@ -22,7 +22,7 @@ public class MyConnection {
     private final String name = "root";
     private final String pass = "quangbach";
     
-    Connection connection;
+    public Connection connection;
     
     public Connection Connect(){
         try {
@@ -32,8 +32,9 @@ public class MyConnection {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(MyConnection.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException e) {
-            System.out.println("Connect fail");
+            System.out.println("Connect fail" +e);
         }
+        
         return connection;
     }
     public static void close(Connection connection){

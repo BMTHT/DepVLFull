@@ -241,7 +241,7 @@ public class ImageDAO {
             ps.execute();
             
             PreparedStatement pst = conn.prepareStatement(query);
-            pst.setInt(1, getNumberRowTableImage() + 1);
+            pst.setInt(1, image.getImgId());
             pst.setInt(2, image.getUserId());
             pst.setString(3, image.getImgDescribe());
             pst.setString(4, image.getImageDateToString());

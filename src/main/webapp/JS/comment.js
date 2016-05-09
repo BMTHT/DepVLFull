@@ -21,3 +21,4 @@ function loadComment(imgId){
     });
     return comment;
 }
+

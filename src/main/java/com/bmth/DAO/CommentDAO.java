@@ -86,7 +86,11 @@ public class CommentDAO {
         } catch (SQLException ex) {
             Logger.getLogger(ImageDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        MyConnection.close(conn);
+        try {
+            conn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(CommentDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return commentList;
     }
     

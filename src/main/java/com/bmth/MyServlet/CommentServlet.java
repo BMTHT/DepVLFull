@@ -6,17 +6,18 @@
 package com.bmth.MyServlet;
 
 import com.bmth.DAO.CommentDAO;
+import com.bmth.bean.Account;
 import com.bmth.bean.Comment;
 import com.google.gson.Gson;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -72,7 +73,7 @@ public class CommentServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String post = request.getParameter("post");
+        String post = request.getParameter("act");
         response.setContentType("application/json");
         BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream()));
         String json = "aa";
@@ -80,10 +81,11 @@ public class CommentServlet extends HttpServlet {
             json = br.readLine();
         }
         CommentDAO commentDAO = new CommentDAO();
+        Comment comment = new Comment();
         Gson gson = new Gson();
-        Comment comment = gson.fromJson(json, Comment.class);
+        comment = gson.fromJson(json, Comment.class);
         comment.setId(commentDAO.getNumberRowTableComment() + 1);
-       // commentDAO.AddComment(comment);
+        commentDAO.AddComment(comment);
         String json2 = gson.toJson(comment);
         response.getWriter().write(json2);
     }

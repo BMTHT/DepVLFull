@@ -64,7 +64,7 @@ function createComment(comment, id) {
     id.appendChild(account);
 }
 
-function addComment(user,id) {
+function addComment(user, id, imgid) {
     var account = document.createElement("div");
     account.setAttribute("class", "account");
 
@@ -75,26 +75,50 @@ function addComment(user,id) {
 
     var imgAvatar = document.createElement("img");
     imgAvatar.src = user.avatarUrl;
-     aAvatar.appendChild(imgAvatar);
-     
-     var text = document.createElement("textarea");
-     text.id = "text" + user.userId;
-     text.rows="3";
-     text.placeholder="Add a comment...";
-     text.tabindex="2";
-     text.name="message";
-     
-     var button = document.createElement("button");
-     button.type = "button";
-     button.appendChild(document.createTextNode("Binh luan"));
-     account.appendChild(aAvatar);
-     account.appendChild(text);
-     account.appendChild(button);
-     id.appendChild(account);     
+    aAvatar.appendChild(imgAvatar);
 
-    
+    var text = document.createElement("textarea");
+    text.id = "text" + user.userId;
+    text.rows = "3";
+    text.placeholder = "Add a comment...";
+    text.tabindex = "2";
+    text.name = "message";
+
+    var button = document.createElement("button");
+    button.type = "button";
+    $(button).click(function () {
+        commentOnClick(text, user.userId, imgid, id);
+    });
+    button.appendChild(document.createTextNode("Binh luan"));
+    account.appendChild(aAvatar);
+    account.appendChild(text);
+    account.appendChild(button);
+    id.appendChild(account);
+
+
 }
 
-function commentOnClick(){
+function commentOnClick(textarea, user, img, id) {
+    var text = textarea.value;
+    var url = "./CommentServlet?act=postcomment";
+    var json = {"id": 1, "imgId": img, "userId": user, "comment": text};
     
+    $.ajax({
+        url: url,
+        data: JSON.stringify(json),
+        type: "POST",
+        dataType: "JSON",
+        contentType: 'application/json',
+        async: false,
+        success: function (data) {
+            var commen = $(id).children();
+            id.removeChild(commen[commen.length-1]);
+            createComment(data, id);
+            addComment(getUser(user),id,img);
+        },
+        error: function (a, b, c) {
+            console.log(a, b, c);
+        }
+
+    });
 }
