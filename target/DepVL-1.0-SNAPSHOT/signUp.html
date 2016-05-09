@@ -74,106 +74,71 @@ and open the template in the editor.
             </div>
         </nav>
         <div id="main" class="main" style="background: #FFFFFF">
-            <div class="signup" id="signup">
-                <h3>Đăng ký :</h3>
-                <form  id="signup_form">
-                    <p><b>Họ và tên :</b></p>
-                    <input id="firstname"  type="text" name="firstname" >
-                    <p><b>Tên đăng nhập :</b></p>
-                    <input type="text" id="username" name="user_name" onblur="check(checkUserName($('#username').val()),'checkuser')"><img id="checkuser" src="" alt="" style="height: 10px; width: 10px"/>
-                    <p><b>Mật khẩu :</b></p>
-                    <input type="password" name="user_password" id='password' onblur="check(checkPass($('#password').val()),'checkpass')"><img id="checkpass" src="" alt="" style="height: 10px; width: 10px"/>
-                    <p><b>Nhập lại mật khẩu :</b></p>
-                    <input type="password" name="repeat_password" id = "repeatpass" onblur="check(checkRP($('#password').val(),$('#repeatpass').val()),'checkrp')"><img id="checkrp" src="" alt="" style="height: 10px; width: 10px"/>
-                    <p><b>Email</b></p>
-                    <input type="email" name="user_email" id="email" onblur="check(checkEmail($('#email').val()),'checkemail')"><img id="checkemail" src="" alt="" style="height: 10px; width: 10px"/>
-                    <p><b>Giới tính: </b></p>
-                    <div class="sex">
-                        <input type="radio" name="sex" value="male"> <span>Nam</span>
-                        <input type="radio" name="sex" value ="female"> Nữ
+            <div class="container" id="signup">
+               
+                <form  id="signup_form" role="form" class="col-sm-offset-1" enctype="multipart/form-data" method="post">
+                    <h3 style="text-align: center;" class="col-sm-ofset-4 col-sm-8">Đăng ký :</h3>
+                    <div class="from-froup col-sm-8" style="margin-top: 10px;">
+                        <label for="firstname">Họ và tên :</label>
+                        <input id="firstname"  type="text" name="firstname" class="form-control" >    
                     </div>
-                    <p><b>Ngày sinh</b></p>
-                    <input type="date" name="date">
-                    <p><b>Địa chỉ</b></p>
-                    <input type="text" name="address">
-                    <button type="submit" >Đăng ký</button>
+                    <div class="form-froup col-sm-8" style="margin-top: 10px;">
+                        <label for="username">Tên đăng nhập :</label>
+                        <input type="text" class="form-control" id="username" name="user_name" 
+                        onblur="check(checkUserName($('#username').val()),'checkuser')">
+                        <img id="checkuser" src="" alt="" style="height: 10px; width: 10px"/>
+                    </div>
+                    <div class="from-froup col-sm-8" style="margin-top: 10px;">
+                        <label for="nickname">Tên hiển thị :</label>
+                        <input id="nickname"  type="text" name="nickname" class="form-control" >    
+                    </div>
+                    <div class="form-froup col-sm-8" style="margin-top: 10px;">
+                        <label for="password">Mật khẩu :</label>
+                        <input type="password" class="form-control" name="user_password" id='password' 
+                        onblur="check(checkPass($('#password').val()),'checkpass')">
+                        <img id="checkpass" src="" alt="" style="height: 10px; width: 10px"/>
+                    </div>
+                    <div class="form-froup col-sm-8" style="margin-top: 10px;">
+                        <label for="repeatpass">Nhập lại mật khẩu :</label>
+                        <input type="password" class="form-control" name="repeat_password" id = "repeatpass" 
+                        onblur="check(checkRP($('#password').val(),$('#repeatpass').val()),'checkrp')">
+                        <img id="checkrp" src="" alt="" style="height: 10px; width: 10px"/>
+                    </div>
+                    <div class="form-froup col-sm-8" style="margin-top: 10px;">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" name="user_email" id="email" 
+                        onblur="check(checkEmail($('#email').val()),'checkemail')">
+                        <img id="checkemail" src="" alt="" style="height: 10px; width: 10px"/>
+                    </div>
+                    
+                    
+                    <div class="radio col-sm-8" style="margin-top: 10px;">
+                        <label for="sex"  style="padding-right: 15px;">Giới tính: </label>
+                        <label><input type="radio" name="sex" value="male"> Nam</label>
+                        <label><input type="radio" name="sex" value ="female"> Nữ</label>
+                    </div>
+                    <div class="form-froup col-sm-8" style="margin-top: 10px;">
+                        <label>Ngày sinh</label>
+                        <input type="date" name="date" class="form-control">
+                    </div>
+                    <div class="form-froup col-sm-8" style="margin-top: 10px;">
+                        <p><b>Địa chỉ</b></p>
+                        <textarea class="form-control" name="address"></textarea>
+                    </div>
+
+                    <div class="form-froup col-sm-8" style="margin-top: 10px;">
+                        <label>Chọn Avatar</label>
+                        <input class="form-control" type="file" name="img"></input>
+                    </div>
+                    
+                    <div class="form-froup col-sm-8">
+                        <div class="col-sm-offset-5 col-sm-4" >
+                            <button type="submit" class="btn btn-danger" style="margin-top: 30px; margin-bottom: 30px;">Đăng ký</button>
+                        </div>
+                    </div>
                 </form>
             </div>
 
-            <div class="rank" id="rank">
-                <p>Bảng xếp hạng</p>
-                <ul>
-                    <li>
-                        <a href="https://www.facebook.com/quang.thang.0502" title="Thang" target="_blank">
-                            <span>1</span>
-                            Quang Thắng
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="https://www.facebook.com/quang.thang.0502" title="Thang" target="_blank">
-                            <span>2</span>
-                            Quang Thắng
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="https://www.facebook.com/quang.thang.0502" title="Thang" target="_blank">
-                            <span>3</span>
-                            Quang Thắng
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="https://www.facebook.com/quang.thang.0502" title="Thang" target="_blank">
-                            <span>4</span>
-                            Quang Thắng
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="https://www.facebook.com/quang.thang.0502" title="Thang" target="_blank">
-                            <span>5</span>
-                            Quang Thắng
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="https://www.facebook.com/quang.thang.0502" title="Thang" target="_blank">
-                            <span>6</span>
-                            Quang Thắng
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="https://www.facebook.com/quang.thang.0502" title="Thang" target="_blank">
-                            <span>7</span>
-                            Quang Thắng
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="https://www.facebook.com/quang.thang.0502" title="Thang" target="_blank">
-                            <span>8</span>
-                            Quang Thắng
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="https://www.facebook.com/quang.thang.0502" title="Thang" target="_blank">
-                            <span>9</span>
-                            Quang Thắng
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="https://www.facebook.com/quang.thang.0502" title="Thang" target="_blank">
-                            <span>10</span>
-                            Quang Thắng
-                        </a>
-                    </li>
-                </ul>
-            </div>
         </div>
         <footer>
             <div class="container">

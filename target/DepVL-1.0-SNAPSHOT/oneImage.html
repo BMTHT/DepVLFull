@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>User</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">     
+        <link href="css/top_style.css" rel="stylesheet" type="text/css"/>
+        <link href="css/loginStyle.css" rel="stylesheet" type="text/css"/>
+        <script src="jsp/rank.js" type="text/javascript"></script>
+        <link href="css/rankStyle.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+        <link href="css/bodyStyle.css" rel="stylesheet" type="text/css"/>
+        <link href="css/oneImage.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <script src="JS/user_ajax.js" type="text/javascript"></script>
+        <script src="JS/Image_Ajax.js" type="text/javascript"></script>
+        <script src="JS/login.js" type="text/javascript"></script>
+        <script src="JS/comment.js" type="text/javascript"></script>
+        <script src ="JS/logout.js" type="text/javascript"></script>
+        <script src ="jsp/showComment.js" type="text/javascript"></script>
+        <script>
+            function getQueryVariable(variable) {
+                var query = window.location.search.substring(1);
+                var vars = query.split("&");
+                for (var i = 0; i < vars.length; i++) {
+                    var pair = vars[i].split("=");
+                    if (pair[0] == variable) {
+                        return pair[1];
+                    }
+                }
+
+            }
+        </script>
+        <script>
+            $(function () {
+                var imgid = getQueryVariable("imgid");
+                var image = getImageById(imgid);
+                var user = getUser(image.userId);
+                var userSession = getUserSession();
+                if(userSession.userId != 0) createAvatar(userSession.userId);
+                $("#image").attr("src", image.imgUrl);
+                $("#image").attr("alt", image.imgTheme);
+                document.getElementById("describe").appendChild(document.createTextNode(image.imgDescribe));
+                document.getElementById("date").appendChild(document.createTextNode(image.imgDate));
+                $("#author").attr("href", "profile.html?id=" + image.userId);
+                document.getElementById("name").appendChild(document.createTextNode(user.nickName));
+                var comment = loadComment(image.imgId);
+                
+                var list_comment = document.getElementById("listcomment");
+                $.each(comment, function (key1, value1) {
+
+                    createComment(value1, list_comment);
+                });
+                if (userSession.userId != 0) {
+                    addComment(userSession, list_comment, image.imgId);
+                }
+            });
+        </script>
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid" style="width: 80%">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/DepVL">
+                        Đẹp VL
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="/DepVL" title="Trang chủ">Trang chủ</a></li>
+                        <li><a href="/DepVL" title="Ảnh mới">Khám phá</a></li>
+                        <li><a href="topImage.html" title="Top ảnh trong tuần">Ảnh đẹp vl</a></li>
+                        <li class="dropdown">
+                            <a href="#" title="Ảnh theo chủ đề" class="dropdown-toggle" data-toggle="dropdown">
+                                Chuyên mục 
+                                <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/DepVL?category=nature" >Thiên nhiên</a></li>
+                                <li><a href="/DepVL?category=portrait">Chân dung</a></li>
+                                <li><a href="/DepVL?category=hotgirl">Hot Girl</a></li>
+                                <li><a href="/DepVL?category=stilllife">Tĩnh vật</a></li>
+                                <li><a href="/DepVL?category=other">Khác</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right" id="loginbar">
+                        <li id="avatar"><a id="login" href="signIn.html" style="padding-bottom: 5px; padding-top: 10px">
+                                <span class="btn btn-danger">Đăng nhập</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container well">
+            <div class="col-sm-offset-1 col-sm-10 img-style col-sm-offset-1">
+                <img id="image" src="img/nature/4.jpg" alt="nature" class="img-rounded"/>
+            </div>
+
+            <div class="col-sm-offset-1 col-sm-10 col-sm-offset-1" style="height: 128px;">
+                <div class="col-sm-8 img-title">
+                    <p><strong id="describe"></strong></p>
+                    <p><i id="date"></i></p>
+                    <p>Đăng bởi <a  id="author" href="#"><strong id="name"></strong></a></p>
+                </div>
+                <div class="col-sm-offset-1 col-sm-3 img-vote" >
+                    <p>0<span class="fa fa-heart"></span></p>
+                    <button type="button" class="btn btn-danger">+ <span class="fa fa-heart"></span></button>
+                </div>
+            </div>
+
+            <div class="col-sm-offset-1 col-sm-10 col-sm-offset-1 list_comment" id="listcomment" >
+               
+               
+            </div>
+        </div>
+
+        <footer>
+            <div class="container">
+                <div class="col-sm-3">
+                    <img src="img/logo/depvl3.png" alt="depvl" style="margin-top: 15px;"/>
+                </div>
+                <div class="col-sm-6">
+
+                </div>
+
+                <div class="col-sm-3 text-right" style="margin-top: 20px;">
+                    <a href="https://www.facebook.com/quang.thang.0502">
+                        <img src="img/icon/facebook.png" alt="facebook" style="width: 20px; height: 20px;">
+                    </a>
+                    <a href="https://www.google.com.vn/">
+                        <img src="img/icon/google_plus.png" alt="gmail" style="width: 20px; height: 20px;"/>
+                    </a>
+                    <a href="https://twitter.com/quangthang0502">
+                        <img src="img/icon/twitter.png" alt="twitter" style="width: 20px; height: 20px;"/>
+                    </a>
+                    <h3 style="margin: 0">Team BTMTH</h3>
+                    <p style="margin-bottom: 0;">Designer : NotMe</p>
+                </div>
+
+            </div>
+        </footer>
+    </body>
+</html>
+

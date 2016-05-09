@@ -22,9 +22,10 @@ public class MyConnection {
     private final String name = "root";
     private final String pass = "quangbach";
     
-    public Connection connection;
+   
     
     public Connection Connect(){
+         Connection connection = null;
         try {
             Class.forName(className);
             connection = DriverManager.getConnection(url,name,pass);

@@ -18,6 +18,8 @@ function loadImage(page, theme) {
         var user = getUser(value.userId);
         img[0].src = value.imgUrl;
         img[0].alt = value.theme;
+        var a = $(img[0]).parent()[0];
+        a.href = "oneImage.html?imgid="+value.imgId;
         var id = $(img[6]).children()[0];
         $(id).append(value.point);
         $(img[3]).append(value.imgDescribe);
@@ -92,6 +94,24 @@ function addImage(key) {
 }
 
 
-function popup(id) {
-    $(id).webuiPopover({type: 'iframe', url: 'comment1.html', width: '500', height: '300', placement: 'top-left'});
+function getImageById(imgid){
+     var url = "./ImageById?imgid="+imgid;
+    var data1;
+    $.ajax({
+        url: url,
+        type: "GET",
+        dataType: "JSON",
+        async: false,
+        success: function (data) {
+
+            data1 = data;
+        },
+        error: function (a, b, c) {
+            console.log(a + b + c);
+            return null;
+        }
+
+    });
+    return data1;
+    
 }

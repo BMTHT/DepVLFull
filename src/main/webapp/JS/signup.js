@@ -8,9 +8,8 @@
 $(function () {
 
     $('#signup').submit(function (e) {
-
-        var data = $('#signup_form').serialize();
-        var url = "./RegisterServlet?act=signup";
+        var data = new FormData(document.getElementById("signup_form"));
+        var url = "./RegisterServlet";
         var checkuser = checkUserName($('#username').val());
         var checkpass = checkPass($('#password').val());
         var checkrp = checkRP($('#password').val(), $('#repeatpass').val());
@@ -23,12 +22,18 @@ $(function () {
                 type: 'POST',
                 async: false,
                 success: function (data) {
-                    if(data.userId != 0)
-                        window.location.href="signIn.html";
+                    if (data.userId != 0)
+                    {
+                        alert("Đăng ký thành công \n Xin mời đăng nhập");
+                        window.location.href = "signIn.html";
+                    }
                 },
                 error: function (data) {
 
-                }
+                },
+                cache: false,
+                contentType: false,
+                processData: false
             });
         }
         else

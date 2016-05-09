@@ -9,6 +9,7 @@ import com.bmth.DatabaseConnection.MyConnection;
 import com.bmth.bean.Account;
 import com.bmth.bean.User;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -146,13 +147,13 @@ public class Register {
         } catch (SQLException ex) {
             System.out.println("select data fail " + ex.toString());
         }
-        MyConnection.close(conn);
+        //MyConnection.close(conn);
         return account;
     }
 
     //Add data into database when check succeed
     public boolean AddUser(Account account) {
-        conn = new MyConnection().Connect();
+       Connection con = new MyConnection().Connect();
 
         String sql = "SET FOREIGN_KEY_CHECKS=0";
 
@@ -160,10 +161,10 @@ public class Register {
         String command2 = "INSERT INTO user(userId,fullName,nickName,birthDay,gender,email,address,phoneNumber,avatarUrl) VALUES(?,?,?,?,?,?,?,?,?)";
 
         try {
-            PreparedStatement ps = conn.prepareStatement(sql);
+            PreparedStatement ps = con.prepareStatement(sql);
             ps.execute();
             int userId = getNumberRowTable("user") + 1;
-            PreparedStatement cs2 = conn.prepareStatement(command2);
+            PreparedStatement cs2 = con.prepareStatement(command2);
             cs2.setInt(1, userId);
             cs2.setString(2, account.getFullName());
             cs2.setString(3, account.getNickName());
@@ -172,24 +173,25 @@ public class Register {
             cs2.setString(6, account.getEmail());
             cs2.setString(7, account.getAddress());
             cs2.setString(8, account.getPhoneNumber());
-            cs2.setString(9, "Image/avatar/default.png");
+            cs2.setString(9, account.getAvatarUrl());
 
-            PreparedStatement cs = conn.prepareStatement(command);
+            PreparedStatement cs = con.prepareStatement(command);
             cs.setInt(1, getNumberRowTable("account") + 1);
             cs.setInt(2, userId);
             cs.setString(3, account.getUsername());
             cs.setString(4, account.getPassword());
             if (cs2.executeUpdate() > 0) {
                 if (cs.executeUpdate() > 0) {
-                    MyConnection.close(conn);
+                    
                     return true;
                 }
             }
         } catch (SQLException ex) {
             System.out.println("Insert data fail " + ex.toString());
+            ex.printStackTrace();
             return false;
         }
-        MyConnection.close(conn);
+       
         return false;
     }
 
@@ -289,7 +291,8 @@ public class Register {
 
     public static void main(String[] args) throws ParseException {
         Register register = new Register();
-        Account account = register.getAccountbyUsername("helloworld");
-        System.out.print(account.getUserId());
+        Account account = new Account("aa","bb",new Date(1000000),1,"email","address","1231","usernawme","password");
+        boolean check = register.AddUser(account);
+        System.out.print(check);
     }
 }

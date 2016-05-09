@@ -4,6 +4,7 @@ com/bmth/MyServlet/CommentServlet.class
 com/bmth/DAO/Register.class
 com/bmth/MyServlet/LogoutServlet.class
 com/bmth/bean/Account.class
+com/bmth/MyServlet/ImageById.class
 com/bmth/bean/Comment.class
 com/bmth/bean/User.class
 com/bmth/MyServlet/UserServlet.class
