@@ -6,7 +6,7 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>Top ảnh đẹp</title>
+        <title>Top Ảnh </title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="css/top_style.css" rel="stylesheet" type="text/css"/>
@@ -25,20 +25,21 @@ and open the template in the editor.
         <!-- Latest compiled JavaScript -->
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-        <script src="jsp/createImage.js" type="text/javascript"></script>
-        <script src="jsp/showComment.js" type="text/javascript"></script>
-        <script src="jsp/rank.js" type="text/javascript"></script>
+        <script src="JS/createImage.js" type="text/javascript"></script>
+        <script src="JS/showComment.js" type="text/javascript"></script>
+        <script src="JS/rank.js" type="text/javascript"></script>
         <script src="JS/jquery.webui-popover.js" type="text/javascript"></script>
         <script src="JS/Image_Ajax.js" type="text/javascript"></script>
         <script src="JS/login.js" type="text/javascript"></script>
         <script src="JS/user_ajax.js" type="text/javascript"></script>
        <script src="JS/comment.js" type="text/javascript"></script>
        <script src ="JS/logout.js" type="text/javascript"></script>
+       <script src="JS/point.js" type="text/javascript"></script>
         
 
         <script>
             var user;
-            $(document).ready(function () {
+            $(function () {
                 loadImage(1, "top");
                 user = getUserSession();
                 var login = document.getElementById("login");
@@ -46,7 +47,7 @@ and open the template in the editor.
                 if (user.userId !== 0) {
                     login.remove();
                     var img = document.createElement("img");
-                    img.src = "/a.jpg";
+                    img.src = user.avatarUrl;
                     img.alt = user.nickName;
                     avatar.appendChild(img);
                 }
@@ -74,7 +75,7 @@ and open the template in the editor.
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="/DepVL" title="Trang chủ">Trang chủ</a></li>
                         <li><a href="/DepVL" title="Ảnh mới">Khám phá</a></li>
-                        <li><a href="topImage.html" title="Top ảnh trong tuần">Ảnh đẹp vl</a></li>
+                        <li><a href="topImage.html" title="Top ảnh trong tuần">Top Ảnh</a></li>
                         <li class="dropdown">
                             <a href="#" title="Ảnh theo chủ đề" class="dropdown-toggle" data-toggle="dropdown">
                                 Chuyên mục 
@@ -82,7 +83,7 @@ and open the template in the editor.
                             <ul class="dropdown-menu">
                                 <li><a href="/DepVL?category=nature" >Thiên nhiên</a></li>
                                 <li><a href="/DepVL?category=portrait">Chân dung</a></li>
-                                <li><a href="/DepVL?category=hotgirl">Hot Girl</a></li>
+                                <li><a href="/DepVL?category=hotgirl">Hài hước</a></li>
                                 <li><a href="/DepVL?category=stilllife">Tĩnh vật</a></li>
                                 <li><a href="/DepVL?category=other">Khác</a></li>
                             </ul>
