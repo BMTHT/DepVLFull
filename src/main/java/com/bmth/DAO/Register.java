@@ -16,6 +16,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -158,7 +161,7 @@ public class Register {
         String sql = "SET FOREIGN_KEY_CHECKS=0";
 
         String command = "Insert Into account(id,userId,username,password) VALUES(?,?,?,?)";
-        String command2 = "INSERT INTO user(userId,fullName,nickName,birthDay,gender,email,address,phoneNumber,avatarUrl) VALUES(?,?,?,?,?,?,?,?,?)";
+        String command2 = "INSERT INTO user(userId,fullName,nickName,birthDay,gender,email,address,phoneNumber,avatarUrl,liked) VALUES(?,?,?,?,?,?,?,?,?,?)";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -174,6 +177,7 @@ public class Register {
             cs2.setString(7, account.getAddress());
             cs2.setString(8, account.getPhoneNumber());
             cs2.setString(9, account.getAvatarUrl());
+            cs2.setString(10, "");
 
             PreparedStatement cs = con.prepareStatement(command);
             cs.setInt(1, getNumberRowTable("account") + 1);
@@ -288,11 +292,37 @@ public class Register {
         // MyConnection.close(conn);
         return user;
     }
+    
+    public List<Integer> liked(int userid){
+        List<Integer> like = new ArrayList<>();
+        String sql = "select liked from user where userId=?";
+        Connection con = new MyConnection().Connect();
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, userid);
+            ResultSet rs = ps.executeQuery();
+            String s = "";
+            while(rs.next()){
+                s = rs.getString(1);
+            }
+            String likes[] = s.split(",");
+            int i=0;
+            while(i < likes.length){
+                like.add(Integer.parseInt(likes[i]));
+                i++;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return like;
+    }
 
     public static void main(String[] args) throws ParseException {
         Register register = new Register();
-        Account account = new Account("aa","bb",new Date(1000000),1,"email","address","1231","usernawme","password");
-        boolean check = register.AddUser(account);
-        System.out.print(check);
+        List<Integer> list = register.liked(1);
+        for(int i = 0; i < list.size(); i ++){
+            System.out.print(list.get(i));
+        }
     }
 }

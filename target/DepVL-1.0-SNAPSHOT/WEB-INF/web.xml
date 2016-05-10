@@ -39,6 +39,10 @@
         <servlet-name>ImageById</servlet-name>
         <servlet-class>com.bmth.MyServlet.ImageById</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PointImageServlet</servlet-name>
+        <servlet-class>com.bmth.MyServlet.PointImageServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ImageServlet</servlet-name>
         <url-pattern>/ImageServlet</url-pattern>
@@ -74,6 +78,10 @@
     <servlet-mapping>
         <servlet-name>ImageById</servlet-name>
         <url-pattern>/ImageById</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PointImageServlet</servlet-name>
+        <url-pattern>/PointImageServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -51,6 +51,7 @@ and open the template in the editor.
                 document.getElementById("date").appendChild(document.createTextNode(image.imgDate));
                 $("#author").attr("href", "profile.html?id=" + image.userId);
                 document.getElementById("name").appendChild(document.createTextNode(user.nickName));
+                $("#point").append(image.point);
                 var comment = loadComment(image.imgId);
                 
                 var list_comment = document.getElementById("listcomment");
@@ -115,7 +116,7 @@ and open the template in the editor.
                     <p>Đăng bởi <a  id="author" href="#"><strong id="name"></strong></a></p>
                 </div>
                 <div class="col-sm-offset-1 col-sm-3 img-vote" >
-                    <p>0<span class="fa fa-heart"></span></p>
+                    <p id="point"><span class="fa fa-heart"></span></p>
                     <button type="button" class="btn btn-danger">+ <span class="fa fa-heart"></span></button>
                 </div>
             </div>
