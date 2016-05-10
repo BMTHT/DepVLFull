@@ -318,11 +318,29 @@ public class Register {
         return like;
     }
 
+     public void updateLiked(List<Integer> liked , int userid){
+        String likes="";
+        for(int i = 0; i < liked.size()-1; i++){
+            likes += liked.get(i)+",";
+        }
+        likes = likes + liked.get(liked.size()-1)+"";
+        String command = "update user set liked = ? where userId = ?";
+        conn = new MyConnection().Connect();
+        try { 
+            PreparedStatement cs = conn.prepareStatement(command);
+            cs.setString(1, likes);
+            cs.setInt(2, userid);
+            cs.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(ImageDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        MyConnection.close(conn);
+    }
+    
     public static void main(String[] args) throws ParseException {
         Register register = new Register();
         List<Integer> list = register.liked(1);
-        for(int i = 0; i < list.size(); i ++){
-            System.out.print(list.get(i));
-        }
+        list.add(12);
+        register.updateLiked(list, 1);
     }
 }

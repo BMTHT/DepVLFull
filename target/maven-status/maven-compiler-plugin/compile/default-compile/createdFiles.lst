@@ -13,5 +13,6 @@ com/bmth/bean/Image.class
 com/bmth/MyServlet/UploadServlet.class
 com/bmth/DAO/CommentDAO.class
 com/bmth/DatabaseConnection/MyConnection.class
+com/bmth/MyServlet/PointImageServlet.class
 com/bmth/MyServlet/LoginServlet.class
 com/bmth/DAO/ImageDAO.class

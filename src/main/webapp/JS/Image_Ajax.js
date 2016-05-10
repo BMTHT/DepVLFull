@@ -19,9 +19,17 @@ function loadImage(page, theme) {
         img[0].src = value.imgUrl;
         img[0].alt = value.theme;
         var a = $(img[0]).parent()[0];
-        a.href = "oneImage.html?imgid="+value.imgId;
+        a.href = "oneImage.html?imgid=" + value.imgId;
+        var click = $(img[6]);
         var id = $(img[6]).children()[0];
-        $(id).append(value.point);
+        $($(id).children()[1]).append(value.point);
+        var voteid = 'vote' + value.imgId;
+        id.id = voteid;
+        if (userSession.userId != 0) {
+            var onclick = 'likeOnClick(' + value.imgId + ',' + userSession.userId + ',"' + voteid + '")';
+            $(id).attr("onclick", onclick);
+        }
+
         $(img[3]).append(value.imgDescribe);
         id = $(img[1]).children()[0];
         id.src = user.avatarUrl;
@@ -94,8 +102,8 @@ function addImage(key) {
 }
 
 
-function getImageById(imgid){
-     var url = "./ImageById?imgid="+imgid;
+function getImageById(imgid) {
+    var url = "./ImageById?imgid=" + imgid;
     var data1;
     $.ajax({
         url: url,
@@ -113,5 +121,5 @@ function getImageById(imgid){
 
     });
     return data1;
-    
+
 }

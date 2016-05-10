@@ -15,6 +15,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -277,10 +278,9 @@ public class ImageDAO {
                 image.setPoint(rs.getFloat(6));
                 image.setImgUrl(rs.getString(7));
             }
-            if(pst.executeUpdate() > 0){
-                System.out.println("select data success");
-            }
+            
         } catch (SQLException ex) {
+            
             System.out.println("select data fail " + ex.toString());
         }
         MyConnection.close(conn);
@@ -297,6 +297,7 @@ public class ImageDAO {
             PreparedStatement cs = conn.prepareStatement(command);
             cs.setFloat(1, image.getPoint());
             cs.setInt(2, imgId);
+            cs.execute();
         } catch (SQLException ex) {
             Logger.getLogger(ImageDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -319,26 +320,12 @@ public class ImageDAO {
         MyConnection.close(conn);
     }
     
+   
     public static void main(String[] args) throws ParseException{
         ImageDAO imageDao = new ImageDAO();
+        imageDao.UpdateImagePoint(1, 25);
         
-//        Image image = new Image();
-//        image.setUserId(4);
-//        image.setImgDescribe("that la sung suong");
-//        String birthday = "1995-10-25";
-//        Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(birthday);
-//        image.setImgDate(utilDate);
-//        image.setTheme("thien nhien");
-//        image.setPoint(50f);
-//        image.setImgUrl("chua co URL");
-//        imageDao.AddImage(image);
-
-          ArrayList<Image> imageList = new ArrayList<>();
-          imageList = imageDao.RankImage();
-          System.out.println("imgId   userID   imgDesribe          imgDate          theme          point     URL");
-          for(int i=0;i<imageList.size();i++){
-              System.out.println(imageList.get(i).getImgId()+"   "+imageList.get(i).getUserId()+"   "+imageList.get(i).getImgDescribe()+"          "+imageList.get(i).getImageDateToString()+"          "+imageList.get(i).getTheme()+"          "+imageList.get(i).getPoint()+"     "+imageList.get(i).getImgUrl());
-          }
+          
             
     }
     
