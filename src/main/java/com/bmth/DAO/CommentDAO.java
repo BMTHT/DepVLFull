@@ -7,11 +7,11 @@ package com.bmth.DAO;
 
 import com.bmth.DatabaseConnection.MyConnection;
 import com.bmth.bean.Comment;
-import com.bmth.DAO.ImageDAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -42,6 +42,24 @@ public class CommentDAO {
         
     }
     
+    public int getCommentId(){
+        int id=0;
+        String command = "select id from comment order by id desc limit 1";
+        Connection con = new MyConnection().Connect();
+        try {
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(command);
+            while(rs.next()){
+                id = rs.getInt(1)+1;
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(CommentDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return id;
+        
+    }
+    
     public void AddComment(Comment comment){
         String command = "Insert Into comment VALUES(?,?,?,?)";
         conn = new MyConnection().Connect();
@@ -51,7 +69,7 @@ public class CommentDAO {
             ps.execute();
             
             PreparedStatement pst = conn.prepareStatement(command);
-            pst.setInt(1, getNumberRowTableComment()+1);
+            pst.setInt(1, getCommentId());
             pst.setInt(2, comment.getImgId());
             pst.setInt(3, comment.getUserId());
             pst.setString(4, comment.getComment());
@@ -97,11 +115,6 @@ public class CommentDAO {
     public static void main(String[] args){
         CommentDAO commentDao = new CommentDAO();
         
-        ArrayList<Comment> imageList = new ArrayList<>();
-        imageList = commentDao.getAllCommentByImageId(2);
-        System.out.println("id    imgId    userId    comment");
-        for(int i=0;i<imageList.size();i++){
-            System.out.println(imageList.get(i).getId()+"   "+imageList.get(i).getImgId()+"   "+imageList.get(i).getUserId()+"   "+imageList.get(i).getComment());
-        }
+       System.out.print(commentDao.getCommentId());
     }
 }
